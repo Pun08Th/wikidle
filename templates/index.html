@@ -7,13 +7,37 @@
 <body>
   <h1>Wikidle</h1>
 
+  <h2>Guess a word</h2>
   <form method="POST">
-    <input type="text" name="guess" placeholder="Enter a word">
-    <button type="submit">Submit</button>
+    <input type="text" name="guess" placeholder="Enter a word" required>
+    <button type="submit">Submit Word</button>
   </form>
 
-  {% if result %}
-    <p>{{ result }}</p>
+  {% if guesses %}
+    <h3>Your Guesses</h3>
+    <table border="1" style="margin: auto;">
+      <tr>
+        <th>Word</th>
+        <th>Count</th>
+      </tr>
+      {% for g, c in guesses %}
+      <tr>
+        <td>{{ g }}</td>
+        <td>{{ c }}</td>
+      </tr>
+      {% endfor %}
+    </table>
   {% endif %}
+
+  <h2>Guess the article</h2>
+  <form method="POST">
+    <input type="text" name="article_guess" placeholder="Guess the article title" required>
+    <button type="submit">Submit Article</button>
+  </form>
+
+  {% if article_feedback %}
+    <p><strong>{{ article_feedback }}</strong></p>
+  {% endif %}
+
 </body>
 </html>
